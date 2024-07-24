@@ -38,7 +38,7 @@ public class ReviewService implements IReviewService {
         Review review = new Review();
         review.setContent(reviewDto.getContent());
         review.setRating(reviewDto.getRating());
-        review.setAuthor(author);
+        review.setUser(author);
         review.setArticle(article);
        return reviewRepository.save(review);
     }
@@ -64,7 +64,7 @@ public class ReviewService implements IReviewService {
 
             review.setContent(reviewDto.getContent());
             review.setRating(reviewDto.getRating());
-            review.setAuthor(author);
+            review.setUser(author);
             review.setArticle(article);
             return reviewRepository.save(review);
         }).orElseThrow(() -> new RuntimeException("Review not found"));
