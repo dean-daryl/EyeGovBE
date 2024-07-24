@@ -52,7 +52,7 @@ public class SecurityConfig {
                 .cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer
                         .configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(request -> request.requestMatchers(AntPathRequestMatcher.antMatcher("/auth/**"))
-                        .permitAll().requestMatchers(AntPathRequestMatcher.antMatcher("/api/**")).permitAll()
+                        .permitAll().requestMatchers(AntPathRequestMatcher.antMatcher("/api/**")).permitAll().requestMatchers(AntPathRequestMatcher.antMatcher("/public/**")).permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
