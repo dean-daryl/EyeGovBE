@@ -38,7 +38,7 @@ public class ArticleService implements IArticleService {
 
     @Override
     public Optional<Article> getArticleById(UUID id) {
-        return Optional.empty();
+        return articleRepository.findById(id);
     }
 
     @Override
