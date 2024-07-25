@@ -34,6 +34,7 @@ public class UserService implements IUserService {
         user.setEmail(userDto.getEmail());
         user.setUsername(userDto.getEmail());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        user.setFullName(userDto.getFullName());
         user.setRole(ERole.USER);
         user.setState(ELifeCycle.CREATED);
         return userRepository.save(user);
