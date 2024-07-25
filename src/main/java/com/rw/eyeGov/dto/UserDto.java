@@ -14,6 +14,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class UserDto {
+
     private String username;
 
     @NotEmpty

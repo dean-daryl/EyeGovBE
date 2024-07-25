@@ -14,7 +14,7 @@ public class ArticleDto {
 
     private String description;
 
-    private byte[] cover;
+    private String cover;
 
     private String content;
 
