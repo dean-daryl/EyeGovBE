@@ -15,24 +15,10 @@ import java.time.LocalDate;
 @Setter
 public class UserDto {
     private String username;
-    @Enumerated(EnumType.STRING)
-    private EGender gender;
-
-    @NotEmpty
-    @NotNull
-    private String nationalId;
-
-    @NotEmpty
-    @NotNull
-    @Size(min = 12,max = 12)
-    private String phoneNumber;
 
     @NotEmpty
     @NotNull
     private String email;
-    @NotEmpty
-    @NotNull
-    private LocalDate dateOfBirth;
 
     @NotEmpty
     @NotNull

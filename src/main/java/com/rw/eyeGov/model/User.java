@@ -27,19 +27,10 @@ public class User extends BaseEntity implements UserDetails {
 
     private String username;
 
-    private LocalDate dateOfBirth;
-
-    private String phoneNumber;
-
-    private String nationalId;
-
     private String email;
-
-    private String tinNumber;
 
     private String password;
 
-    private EGender gender;
     private ERole role;
 
     @Override

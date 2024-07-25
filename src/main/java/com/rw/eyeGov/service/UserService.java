@@ -2,6 +2,7 @@ package com.rw.eyeGov.service;
 
 
 import com.rw.eyeGov.dto.ELifeCycle;
+import com.rw.eyeGov.dto.ERole;
 import com.rw.eyeGov.dto.UserDto;
 import com.rw.eyeGov.exception.ResourceExistsException;
 import com.rw.eyeGov.exception.ResourceNotFoundException;
@@ -10,9 +11,6 @@ import com.rw.eyeGov.repository.IUserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,12 +33,8 @@ public class UserService implements IUserService {
         User user = new User();
         user.setEmail(userDto.getEmail());
         user.setUsername(userDto.getEmail());
-        user.setGender(userDto.getGender());
-        user.setDateOfBirth(userDto.getDateOfBirth());
-        user.setPhoneNumber(userDto.getPhoneNumber());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        user.setRole(userDto.getRole());
-        user.setNationalId(userDto.getNationalId());
+        user.setRole(ERole.USER);
         user.setState(ELifeCycle.CREATED);
         return userRepository.save(user);
     }
@@ -53,9 +47,6 @@ public class UserService implements IUserService {
             throw new ResourceExistsException("User with such email already exists.");
         }
         userToUpdate.setEmail(userDto.getEmail());
-        userToUpdate.setGender(userDto.getGender());
-        userToUpdate.setDateOfBirth(userDto.getDateOfBirth());
-        userToUpdate.setPhoneNumber(userDto.getPhoneNumber());
         userToUpdate.setUsername(userDto.getUsername());
         return userRepository.save(userToUpdate);
     }

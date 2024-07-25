@@ -12,6 +12,7 @@ import lombok.Setter;
 @Setter
 public class Review extends BaseEntity {
     private String content;
+
     private int rating;
 
     @ManyToOne(fetch = FetchType.EAGER)
