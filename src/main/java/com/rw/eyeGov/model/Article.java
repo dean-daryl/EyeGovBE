@@ -3,6 +3,7 @@ package com.rw.eyeGov.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,7 @@ public class Article extends BaseEntity{
 
     private String cover;
 
+    @Lob
     private String content;
 
     private List<String> categories;
