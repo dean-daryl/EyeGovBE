@@ -14,4 +14,6 @@ public interface IArticleService {
     Article updateArticle(UUID id, ArticleDto article);
     Article applaudArticle(UUID id, Integer numberOfApplause);
     void deleteArticle(UUID id);
+
+    List<Article> fetchArticleByCategory(String category);
 }

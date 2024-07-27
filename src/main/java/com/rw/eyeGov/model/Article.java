@@ -1,5 +1,6 @@
 package com.rw.eyeGov.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -20,7 +21,7 @@ public class Article extends BaseEntity{
 
     private String cover;
 
-    @Lob
+    @Column(name = "content",columnDefinition = "TEXT")
     private String content;
 
     private List<String> categories;

@@ -46,4 +46,8 @@ public class ArticleController {
     public void deleteArticle(@PathVariable UUID id) {
         articleService.deleteArticle(id);
     }
+    @GetMapping("/category/{categoryName}")
+    public List<Article> fetchArticlesByCategory(@PathVariable String categoryName){
+        return  articleService.fetchArticleByCategory(categoryName);
+    }
 }

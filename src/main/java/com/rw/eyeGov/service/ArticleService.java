@@ -49,15 +49,11 @@ public class ArticleService implements IArticleService {
     @Override
     public Article updateArticle(UUID id, ArticleDto updatedArticle) {
             Article existingArticle = articleRepository.findById(id).orElseThrow(()-> new RuntimeException("Article Not Found "));
-            Article article = new Article();
-            article.setTitle(updatedArticle.getTitle());
-            article.setDescription(updatedArticle.getDescription());
-            article.setCover(updatedArticle.getCover());
-            article.setAuthor(existingArticle.getAuthor());
-            article.setApplause(existingArticle.getApplause());
-            article.setContent(updatedArticle.getContent());
-            article.setState(ELifeCycle.ACTIVE);
-            return articleRepository.save(article);
+            existingArticle.setTitle(updatedArticle.getTitle());
+            existingArticle.setDescription(updatedArticle.getDescription());
+            existingArticle.setCover(updatedArticle.getCover());
+            existingArticle.setContent(updatedArticle.getContent());
+            return articleRepository.save(existingArticle);
     }
 
     @Override
@@ -70,5 +66,10 @@ public class ArticleService implements IArticleService {
     @Override
     public void deleteArticle(UUID id) {
         articleRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Article> fetchArticleByCategory(String category) {
+        return  articleRepository.findArticlesByCategory(category);
     }
 }
