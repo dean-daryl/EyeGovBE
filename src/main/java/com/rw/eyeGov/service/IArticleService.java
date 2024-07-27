@@ -11,7 +11,7 @@ public interface IArticleService {
     Article createArticle(ArticleDto articleDto);
     Optional<Article> getArticleById(UUID id);
     List<Article> getAllArticles();
-    Article updateArticle(UUID id, Article article);
+    Article updateArticle(UUID id, ArticleDto article);
     Article applaudArticle(UUID id, Integer numberOfApplause);
     void deleteArticle(UUID id);
 }

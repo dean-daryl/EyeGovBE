@@ -34,13 +34,7 @@ public class ArticleController {
 
     @PutMapping("/{id}")
     public Article updateArticle(@PathVariable UUID id, @RequestBody ArticleDto articleDto) {
-        Article updatedArticle = new Article();
-        updatedArticle.setTitle(articleDto.getTitle());
-        updatedArticle.setDescription(articleDto.getDescription());
-        updatedArticle.setCover(articleDto.getCover());
-        updatedArticle.setContent(articleDto.getContent());
-        updatedArticle.setCategories(articleDto.getCategories());
-        return articleService.updateArticle(id, updatedArticle);
+       return articleService.updateArticle(id, articleDto);
     }
 
     @PatchMapping("/{id}/applause")

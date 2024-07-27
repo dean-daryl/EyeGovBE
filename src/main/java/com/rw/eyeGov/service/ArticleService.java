@@ -47,15 +47,17 @@ public class ArticleService implements IArticleService {
     }
 
     @Override
-    public Article updateArticle(UUID id, Article updatedArticle) {
-        return articleRepository.findById(id).map(article -> {
+    public Article updateArticle(UUID id, ArticleDto updatedArticle) {
+            Article existingArticle = articleRepository.findById(id).orElseThrow(()-> new RuntimeException("Article Not Found "));
+            Article article = new Article();
             article.setTitle(updatedArticle.getTitle());
             article.setDescription(updatedArticle.getDescription());
             article.setCover(updatedArticle.getCover());
+            article.setAuthor(existingArticle.getAuthor());
+            article.setApplause(existingArticle.getApplause());
             article.setContent(updatedArticle.getContent());
-            article.setAuthor(updatedArticle.getAuthor());
+            article.setState(ELifeCycle.ACTIVE);
             return articleRepository.save(article);
-        }).orElseThrow(() -> new RuntimeException("Article not found"));
     }
 
     @Override
