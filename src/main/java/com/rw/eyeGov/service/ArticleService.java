@@ -52,6 +52,7 @@ public class ArticleService implements IArticleService {
             existingArticle.setTitle(updatedArticle.getTitle());
             existingArticle.setDescription(updatedArticle.getDescription());
             existingArticle.setCover(updatedArticle.getCover());
+            existingArticle.setCategories(updatedArticle.getCategories());
             existingArticle.setContent(updatedArticle.getContent());
             return articleRepository.save(existingArticle);
     }
