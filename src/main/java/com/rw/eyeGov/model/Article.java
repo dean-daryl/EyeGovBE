@@ -21,7 +21,7 @@ public class Article extends BaseEntity{
 
     private String cover;
 
-    @Column(name = "content",columnDefinition = "TEXT")
+    @Column(name = "content",length = 100000)
     private String content;
 
     private List<String> categories;
