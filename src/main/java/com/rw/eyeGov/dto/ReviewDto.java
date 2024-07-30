@@ -11,7 +11,7 @@ public class ReviewDto {
     private String content;
     private int rating;
     private String authorName;
-    private String authorEmail;
+    private UUID userId;
     private UUID articleId;
 
 }

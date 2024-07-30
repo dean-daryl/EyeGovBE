@@ -1,5 +1,6 @@
 package com.rw.eyeGov.service;
 
+import com.rw.eyeGov.dto.ELifeCycle;
 import com.rw.eyeGov.dto.ReviewDto;
 import com.rw.eyeGov.model.Article;
 import com.rw.eyeGov.model.Review;
@@ -30,7 +31,7 @@ public class ReviewService implements IReviewService {
 
     @Override
     public Review createReview(ReviewDto reviewDto) {
-        User author = userRepository.findUserByEmail(reviewDto.getAuthorEmail())
+        User author = userRepository.findById(reviewDto.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
         Article article = articleRepository.findById(reviewDto.getArticleId())
                 .orElseThrow(() -> new RuntimeException("Article not found"));
@@ -38,6 +39,8 @@ public class ReviewService implements IReviewService {
         Review review = new Review();
         review.setContent(reviewDto.getContent());
         review.setRating(reviewDto.getRating());
+        review.setState(ELifeCycle.ACTIVE);
+        review.setVersion(0);
         review.setUser(author);
         review.setArticle(article);
        return reviewRepository.save(review);
@@ -49,15 +52,14 @@ public class ReviewService implements IReviewService {
     }
 
     @Override
-    public Page<Review> getAllReviews(Pageable pageable) {
-        return reviewRepository.findAll(pageable);
-
-    }
+    public Page<Review> getAllArticleReviews(UUID articleId,Pageable pageable) {
+        return reviewRepository.findAllByArticleId(articleId, pageable);
+     }
 
     @Override
     public Review updateReview(UUID id, ReviewDto reviewDto) {
         return reviewRepository.findById(id).map(review -> {
-            User author = userRepository.findUserByEmail(reviewDto.getAuthorEmail())
+            User author = userRepository.findById(reviewDto.getUserId())
                     .orElseThrow(() -> new RuntimeException("User not found"));
             Article article = articleRepository.findById(reviewDto.getArticleId())
                     .orElseThrow(() -> new RuntimeException("Article not found"));

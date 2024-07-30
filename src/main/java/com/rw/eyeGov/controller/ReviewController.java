@@ -30,9 +30,9 @@ public class ReviewController {
                 .orElseThrow(() -> new RuntimeException("Review not found"));
     }
 
-    @GetMapping
-    public Page<Review> getAllReviews(@RequestParam("pageNumber") Integer pageNumber,@RequestParam("pageSize") Integer pageSize) {
-        return reviewService.getAllReviews(PageUtil.getPageable(pageNumber, pageSize));
+    @GetMapping("/article/{articleId}")
+        public Page<Review> getAllReviews(@PathVariable("articleId")UUID articleId, @RequestParam("pageNumber") Integer pageNumber,@RequestParam("pageSize") Integer pageSize) {
+        return reviewService.getAllArticleReviews(articleId,PageUtil.getPageable(pageNumber, pageSize));
     }
 
     @PutMapping("/{id}")

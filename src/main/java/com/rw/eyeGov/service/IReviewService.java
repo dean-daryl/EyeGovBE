@@ -12,7 +12,7 @@ import java.util.UUID;
 public interface IReviewService {
     Review createReview(ReviewDto reviewDTO);
     Optional<Review> getReviewById(UUID id);
-    Page<Review> getAllReviews(Pageable pageable);
+    Page<Review> getAllArticleReviews(UUID articleId,Pageable pageable);
     Review updateReview(UUID id, ReviewDto reviewDto);
     void deleteReview(UUID id);
 }
