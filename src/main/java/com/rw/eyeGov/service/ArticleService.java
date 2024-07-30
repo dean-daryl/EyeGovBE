@@ -60,7 +60,7 @@ public class ArticleService implements IArticleService {
     @Override
     public Article applaudArticle(UUID id, Integer numberOfApplause) {
         Article article = articleRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Article not found!"));
-        article.setApplause(numberOfApplause);
+        article.setApplause(article.getApplause() + numberOfApplause);
         return  articleRepository.save(article);
     }
 
