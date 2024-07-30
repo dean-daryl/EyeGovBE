@@ -49,7 +49,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
-                .cors(cors -> cors.disable())
+                .cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer
+                        .configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(request -> request.requestMatchers(AntPathRequestMatcher.antMatcher("/auth/**"))
                         .permitAll().requestMatchers(AntPathRequestMatcher.antMatcher("/api/**")).permitAll().requestMatchers(AntPathRequestMatcher.antMatcher("/public/**")).permitAll()
                         .anyRequest().authenticated())
@@ -72,7 +73,7 @@ public class SecurityConfig {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         // Make the below setting as * to allow connection from any hos
         corsConfiguration.addAllowedOriginPattern("*");
-        corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"));
+        corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT","PATCH" ,"DELETE", "OPTIONS", "HEAD"));
         corsConfiguration.setAllowCredentials(true);
         corsConfiguration.setAllowedHeaders(List.of("*"));
         corsConfiguration.setMaxAge(3600L);
