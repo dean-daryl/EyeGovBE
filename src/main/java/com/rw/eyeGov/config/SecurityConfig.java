@@ -49,8 +49,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
-                .cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer
-                        .configurationSource(corsConfigurationSource()))
+                .cors(cors -> cors.disable())
                 .authorizeHttpRequests(request -> request.requestMatchers(AntPathRequestMatcher.antMatcher("/auth/**"))
                         .permitAll().requestMatchers(AntPathRequestMatcher.antMatcher("/api/**")).permitAll().requestMatchers(AntPathRequestMatcher.antMatcher("/public/**")).permitAll()
                         .anyRequest().authenticated())
